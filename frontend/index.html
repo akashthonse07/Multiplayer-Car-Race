@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cinematic Racer - Multiplayer</title>
+<link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+<div id="app">
+  <!-- Auth Screen -->
+  <div id="screen-auth" class="screen active">
+    <div class="auth-card">
+      <h1 class="logo">CINEMATIC<span>RACER</span></h1>
+      <p class="tagline">Multiplayer 3D Racing</p>
+      <div class="tabs">
+        <button id="tab-login" class="tab active">Login</button>
+        <button id="tab-register" class="tab">Register</button>
+      </div>
+      <form id="form-login" class="form">
+        <input id="login-username" placeholder="Username" autocomplete="username" />
+        <input id="login-password" type="password" placeholder="Password" autocomplete="current-password" />
+        <button type="submit">Enter Garage</button>
+        <div class="err" id="login-err"></div>
+      </form>
+      <form id="form-register" class="form hidden">
+        <input id="reg-username" placeholder="Username" />
+        <input id="reg-password" type="password" placeholder="Password (min 4)" />
+        <button type="submit">Create Account</button>
+        <div class="err" id="reg-err"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lobby Screen -->
+  <div id="screen-lobby" class="screen">
+    <header class="topbar">
+      <div class="brand">CINEMATIC<span>RACER</span></div>
+      <div class="userbox">
+        <span id="me-uid" class="uid"></span>
+        <span id="me-name"></span>
+        <span class="dot online"></span>
+        <button id="btn-logout" class="ghost">Logout</button>
+      </div>
+    </header>
+    <div class="lobby-grid">
+      <aside class="panel friends-panel">
+        <h2>Friends</h2>
+        <div class="search-row">
+          <input id="friend-search" placeholder="Search by ID or name" />
+          <button id="btn-search">Search</button>
+        </div>
+        <div id="search-results" class="list"></div>
+        <h3>Requests</h3>
+        <div id="friend-requests" class="list"></div>
+        <h3>My Friends</h3>
+        <div id="friends-list" class="list"></div>
+      </aside>
+      <main class="panel room-panel">
+        <h2>Race Room</h2>
+        <div class="room-actions">
+          <button id="btn-create-room">Create Room</button>
+          <button id="btn-solo">Solo Race</button>
+          <div class="join-row">
+            <input id="join-code" placeholder="Room code" />
+            <button id="btn-join-room">Join</button>
+          </div>
+        </div>
+        <div id="room-view" class="room-view hidden">
+          <div class="room-header">
+            <span>Code: <b id="room-code"></b></span>
+            <span>Track: <b id="room-track"></b></span>
+            <span>Status: <b id="room-status"></b></span>
+          </div>
+          <div id="room-members" class="members"></div>
+          <div class="room-footer">
+            <button id="btn-ready" class="accent">Ready</button>
+            <button id="btn-start" class="accent hidden">Start Race (host)</button>
+            <button id="btn-leave" class="ghost">Leave</button>
+            <button id="btn-invite" class="ghost">Invite Friend</button>
+          </div>
+        </div>
+        <div id="invite-picker" class="hidden">
+          <h3>Invite a friend</h3>
+          <div id="invite-friends-list" class="list"></div>
+          <button id="btn-cancel-invite" class="ghost">Cancel</button>
+        </div>
+      </main>
+      <aside class="panel chat-panel">
+        <h2>Lobby Chat</h2>
+        <div id="lobby-chat" class="chat-log"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="screen-game" class="screen">
+    <canvas id="game-canvas"></canvas>
+    <div id="hud">
+      <div class="hud-left">
+        <div class="speed"><span id="speed-val">0</span><small>km/h</small></div>
+        <div class="lap">Lap <span id="lap-val">1</span>/3</div>
+      </div>
+      <div class="hud-center">
+        <div id="countdown" class="countdown hidden"></div>
+        <div id="race-status" class="race-status"></div>
+      </div>
+      <div class="hud-right">
+        <div id="positions" class="positions"></div>
+      </div>
+      <div id="minimap"><canvas id="minimap-canvas" width="160" height="160"></canvas></div>
+    </div>
+    <div id="game-chat" class="game-chat">
+      <div id="game-chat-log" class="chat-log small"></div>
+      <input id="game-chat-input" placeholder="Press Enter to chat..." />
+    </div>
+    <button id="btn-exit-game" class="ghost exit-btn">Exit</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

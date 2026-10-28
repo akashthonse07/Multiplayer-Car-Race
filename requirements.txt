@@ -1,0 +1,6 @@
+fastapi==0.129.0
+uvicorn==0.40.0
+SQLAlchemy==2.0.46
+itsdangerous==2.2.0
+python-multipart==0.0.22
+aiofiles==24.1.0
